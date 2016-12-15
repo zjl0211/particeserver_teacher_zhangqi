@@ -13,21 +13,21 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Transient;
 
+import org.springframework.context.annotation.Lazy;
+
 import com.cloudage.membercenter.util.BaseEntity;
+import com.cloudage.membercenter.util.DateRecord;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Article extends BaseEntity {
+public class Article extends DateRecord {
 	
 	User author;
-	Date createDate;
-	Date editDate;
-
+	
 	String title;
 	String text;
 	
 	@ManyToOne(optional=false)
-	@JsonIgnore
 	public User getAuthor() {
 		return author;
 	}
@@ -36,32 +36,15 @@ public class Article extends BaseEntity {
 		this.author = author;
 	}
 
-	@Transient
-	public String getAuthorName(){
-		return author.name;
-	}
-	
-	@Transient
-	public String getAuthorAvatar(){
-		return author.avatar;
-	}
-	
-	@Column(updatable=false)
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public Date getEditDate() {
-		return editDate;
-	}
-
-	public void setEditDate(Date editDate) {
-		this.editDate = editDate;
-	}
+//	@Transient
+//	public String getAuthorName(){
+//		return author.name;
+//	}
+//	
+//	@Transient
+//	public String getAuthorAvatar(){
+//		return author.avatar;
+//	}
 
 	public String getTitle() {
 		return title;
@@ -77,16 +60,5 @@ public class Article extends BaseEntity {
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	@PreUpdate
-	void onPreUpdate(){
-		editDate = new Date();
-	}
-	
-	@PrePersist
-	void onPrePersist(){
-		createDate = new Date();
-		editDate = new Date();
 	}
 }
