@@ -2,6 +2,9 @@ package com.cloudage.membercenter.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cloudage.membercenter.util.BaseEntity;
 import com.cloudage.membercenter.util.DateRecord;
@@ -24,10 +27,11 @@ public class Comment extends DateRecord{
 	}
 	
 	@ManyToOne(optional=false)
-	@JsonIgnore
 	public Article getArticle() {
 		return article;
 	}
+	
+
 	
 	public void setText(String text) {
 		this.text = text;

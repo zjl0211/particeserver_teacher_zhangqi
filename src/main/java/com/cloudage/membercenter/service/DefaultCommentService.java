@@ -35,4 +35,18 @@ public class DefaultCommentService implements ICommentService {
 	public int getCommentCountOfArticle(int articleId) {
 		return commentRepo.commentCountOfArticle(articleId);
 	}
+
+	@Override
+	public Page<Comment> getCommentsTome(Integer id,int page) {
+		Sort sort = new Sort(Direction.DESC, "createDate");
+		PageRequest pageReqeust = new PageRequest(page, 10, sort);
+		return commentRepo.findAllOfMe(id, pageReqeust);
+	}
+	
+	@Override
+	public Page<Comment> getMyComments(Integer id,int page) {
+		Sort sort = new Sort(Direction.DESC, "createDate");
+		PageRequest pageReqeust = new PageRequest(page, 10, sort);
+		return commentRepo.findAllOfMy(id, pageReqeust);
+	}
 }

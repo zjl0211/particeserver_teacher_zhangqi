@@ -36,15 +36,6 @@ public class Article extends DateRecord {
 		this.author = author;
 	}
 
-//	@Transient
-//	public String getAuthorName(){
-//		return author.name;
-//	}
-//	
-//	@Transient
-//	public String getAuthorAvatar(){
-//		return author.avatar;
-//	}
 
 	public String getTitle() {
 		return title;

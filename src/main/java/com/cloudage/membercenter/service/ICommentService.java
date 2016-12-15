@@ -10,4 +10,7 @@ public interface ICommentService {
 	Comment save(Comment comment);
 	
 	int getCommentCountOfArticle(int articleId);
+
+	Page<Comment> getCommentsTome(Integer id,int page);
+	Page<Comment> getMyComments(Integer id,int page);
 }

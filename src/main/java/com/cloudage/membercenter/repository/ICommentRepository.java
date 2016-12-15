@@ -15,4 +15,10 @@ public interface ICommentRepository  extends PagingAndSortingRepository<Comment,
 	
 	@Query("select count(*) from Comment comment where comment.article.id = ?1")
 	int commentCountOfArticle(int articleId);
+
+	@Query("from Comment comment where comment.article.author.id = ?1")
+	Page<Comment> findAllOfMe(Integer id,Pageable page);
+	
+	@Query("from Comment comment where comment.author.id = ?1")
+	Page<Comment> findAllOfMy(Integer id,Pageable page);
 }

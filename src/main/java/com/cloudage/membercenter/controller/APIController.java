@@ -209,4 +209,34 @@ public class APIController {
 			){
 		return articleService.searchTextWithKeyword(keyword,page);
 	}
+	
+	@RequestMapping(value="/comments/tome")
+	public Page<Comment> getCommentsTome(
+			HttpServletRequest request
+			){
+		return commentService.getCommentsTome(getCurrentUser(request).getId(),0);
+	}
+	
+	@RequestMapping(value="/comments/tome/{page}")
+	public Page<Comment> getCommentsTome(
+			@PathVariable int page,
+			HttpServletRequest request
+			){
+		return commentService.getCommentsTome(getCurrentUser(request).getId(),page);
+	}
+	
+	@RequestMapping(value="/comments/my")
+	public Page<Comment> getMyComments(
+			HttpServletRequest request
+			){
+		return commentService.getMyComments(getCurrentUser(request).getId(),0);
+	}
+	
+	@RequestMapping(value="/comments/my/{page}")
+	public Page<Comment> getMyComments(
+			@PathVariable int page,
+			HttpServletRequest request
+			){
+		return commentService.getMyComments(getCurrentUser(request).getId(),page);
+	}
 }
